@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VSBlogSystem Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <BlogSystemData>
+    <Name>MVC Tamplate</Name>
+    <Description>MVC BlogSystem with core and service projects, entity framework, repository, unit of work and service patterns, user managment included, devexpress installed admin template is AdminLte</Description>
+    <DefaultName>MVC</DefaultName>
+    <ProjectType>CSharp</ProjectType>
+    <ProjectSubType></ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>sw-file-icon.png</Icon>
+    <BlogSystemID>9bd0c037-50f4-4895-8dd6-2de1d7ee9508</BlogSystemID>
+    <!-- Indicates how many parent folders this item template should appear in -->
+    <NumberOfParentCategoriesToRollUp>1</NumberOfParentCategoriesToRollUp>
+  </BlogSystemData>
+  <WizardExtension>
+    <Assembly>PecanWaffle, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</Assembly>
+    <FullClassName>PecanWaffle.PecanWizard</FullClassName>
+  </WizardExtension>
+  <BlogSystemContent>
+    <Project TargetFileName="$safeprojectname$.csproj" File="VsBlogSystemProj.csproj" ReplaceParameters="true" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005"></Project>
+    <CustomParameters xmlns="http://schemas.microsoft.com/developer/vstemplate/2005">
+      <CustomParameter Name="BlogSystemName" Value="MVCBlogSystem" />
+      <CustomParameter Name="ExtensionId" Value="WebMVCBlogSystems.Giorgi Dolmazashvili.f71217f2-108f-4f0f-a0a9-95b02949054d"/>
+      <CustomParameter Name="Item" Value="Item" />
+    </CustomParameters>
+  </BlogSystemContent>
+</VSBlogSystem>

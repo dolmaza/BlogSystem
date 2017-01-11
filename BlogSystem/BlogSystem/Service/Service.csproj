@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{351afa06-21f1-4ca1-bdc3-04ede3b47f42}</ProjectGuid>
+    <ProjectGuid>{351AFA06-21F1-4CA1-BDC3-04EDE3B47F42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Service</RootNamespace>
@@ -54,9 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IServices\IAdvertisementService.cs" />
     <Compile Include="IServices\IBaseService.cs" />
+    <Compile Include="IServices\ICategoryService.cs" />
     <Compile Include="IServices\IDictionaryService.cs" />
     <Compile Include="IServices\IPermissionService.cs" />
+    <Compile Include="IServices\IPostRatingService.cs" />
+    <Compile Include="IServices\IPostService.cs" />
+    <Compile Include="IServices\IPostViewService.cs" />
     <Compile Include="IServices\IRoleService.cs" />
     <Compile Include="IServices\IUserService.cs" />
     <Compile Include="IUnitOfWork\IUnitOfWork.cs" />
@@ -66,9 +71,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\AdvertisementService.cs" />
     <Compile Include="Services\BaseService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\DictionaryService.cs" />
     <Compile Include="Services\PermissionService.cs" />
+    <Compile Include="Services\PostRatingService.cs" />
+    <Compile Include="Services\PostService.cs" />
+    <Compile Include="Services\PostViewService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />

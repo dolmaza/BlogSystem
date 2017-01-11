@@ -13,9 +13,11 @@ namespace Core.Entities
         public DateTime? CreateTime { get; set; }
 
         public Category Parent { get; set; }
+
         public ICollection<Category> Childrens { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<User> Users { get; set; }
+        public ICollection<Advertisement> Advertisements { get; set; }
 
         public Category()
         {
@@ -23,6 +25,7 @@ namespace Core.Entities
             Childrens = new List<Category>();
             Posts = new List<Post>();
             Users = new List<User>();
+            Advertisements = new List<Advertisement>();
         }
 
     }

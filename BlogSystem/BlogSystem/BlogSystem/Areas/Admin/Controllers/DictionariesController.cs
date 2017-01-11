@@ -1,4 +1,6 @@
-﻿using Core.Entities;
+﻿using BlogSystem.Admin.Models;
+using BlogSystem.Admin.Reusable;
+using Core.Entities;
 using DevExpress.Web.Mvc;
 using Service.IServices;
 using Service.Properties;
@@ -6,8 +8,6 @@ using Service.Services;
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using BlogSystem.Admin.Models;
-using BlogSystem.Admin.Reusable;
 
 namespace BlogSystem.Areas.Admin.Controllers
 {
@@ -45,6 +45,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                 ParentID = model.ParentID,
                 Caption = model.Caption,
                 CaptionEng = model.CaptionEng,
+                CaptionRus = model.CaptionRus,
                 StringCode = model.StringCode,
                 IntCode = model.IntCode,
                 DecimalValue = model.DecimalValue,
@@ -74,6 +75,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                 dictionary.ParentID = model.ParentID;
                 dictionary.Caption = model.Caption;
                 dictionary.CaptionEng = model.CaptionEng;
+                dictionary.CaptionRus = model.CaptionRus;
                 dictionary.StringCode = model.StringCode;
                 dictionary.IntCode = model.IntCode;
                 dictionary.DecimalValue = model.DecimalValue;
@@ -128,6 +130,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                     ParentID = d.ParentID,
                     Caption = d.Caption,
                     CaptionEng = d.CaptionEng,
+                    CaptionRus = d.CaptionRus,
                     StringCode = d.StringCode,
                     IntCode = d.IntCode,
                     DecimalValue = d.DecimalValue,

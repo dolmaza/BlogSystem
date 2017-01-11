@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BlogSystem.Admin.Reusable;
+﻿using BlogSystem.Admin.Reusable;
+using System.Collections.Generic;
 
 namespace BlogSystem.Admin.Models
 {
@@ -17,6 +17,7 @@ namespace BlogSystem.Admin.Models
                 public int? ParentID { get; set; }
                 public string Caption { get; set; }
                 public string CaptionEng { get; set; }
+                public string CaptionRus { get; set; }
                 public string StringCode { get; set; }
                 public int? IntCode { get; set; }
                 public decimal? DecimalValue { get; set; }

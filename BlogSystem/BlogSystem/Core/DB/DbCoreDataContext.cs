@@ -23,6 +23,7 @@ namespace Core.DB
             modelBuilder.Configurations.Add(new PostConfiguration());
             modelBuilder.Configurations.Add(new PostRatingConfiguration());
             modelBuilder.Configurations.Add(new PostViewConfiguration());
+            modelBuilder.Configurations.Add(new AdvertisementConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -36,6 +37,7 @@ namespace Core.DB
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostRating> PostRatings { get; set; }
         public DbSet<PostView> PostViews { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
 
     }
 }

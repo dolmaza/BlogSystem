@@ -55,6 +55,15 @@ namespace Core.DB.Configurations
                 .HasForeignKey(p => p.StatusID)
                 .WillCascadeOnDelete(false);
 
+            HasMany(p => p.Advertisements)
+                .WithMany(a => a.Posts)
+                .Map(m =>
+                {
+                    m.ToTable("PostAdvertisements");
+                    m.MapLeftKey("PostID");
+                    m.MapRightKey("AdvertisementID");
+                });
+
         }
     }
 }

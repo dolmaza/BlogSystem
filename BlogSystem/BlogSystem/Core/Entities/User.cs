@@ -22,6 +22,7 @@ namespace Core.Entities
         public ICollection<PostRating> PostRatings { get; set; }
         public ICollection<PostView> PostViews { get; set; }
         public ICollection<Category> Categories { get; set; }
+        public ICollection<Advertisement> Advertisements { get; set; }
 
         public User()
         {
@@ -29,6 +30,7 @@ namespace Core.Entities
             Posts = new List<Post>();
             PostViews = new List<PostView>();
             PostRatings = new List<PostRating>();
+            Advertisements = new List<Advertisement>();
             CreateTime = DateTime.Now;
         }
     }

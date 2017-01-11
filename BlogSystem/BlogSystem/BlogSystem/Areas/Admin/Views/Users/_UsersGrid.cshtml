@@ -8,13 +8,33 @@
     settings.CommandColumn.Visible = true;
     settings.CommandColumn.ShowDeleteButton = true;
     settings.CommandColumn.ShowEditButton = true;
-    settings.CommandColumn.VisibleIndex = 6;
+    settings.CommandColumn.VisibleIndex = 8;
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
 
 
     settings.CallbackRouteValues = Model.ListUrl;
     settings.SettingsEditing.AddNewRowRouteValues = Model.AddNewUrl;
     settings.SettingsEditing.UpdateRowRouteValues = Model.UpdateUrl;
     settings.SettingsEditing.DeleteRowRouteValues = Model.DeleteUrl;
+
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Avatar";
+        column.Width = Unit.Pixel(70);
+
+        column.SetDataItemTemplateContent(c =>
+        {
+            var avatar = DataBinder.Eval(c.DataItem, "Avatar");
+            ViewContext.Writer.Write($"<img src='{avatar}' width=50 heigth=50 style='border-radius: 50%;' alt='Avatar'>");
+        });
+
+        column.SetEditItemTemplateContent(c =>
+        {
+            var avatar = DataBinder.Eval(c.DataItem, "Avatar");
+            ViewContext.Writer.Write($"<img src='{avatar}' width=50 heigth=50 style='border-radius: 50%;' alt='Avatar'>");
+        });
+
+    });
 
     settings.Columns.Add(column =>
     {
@@ -87,6 +107,14 @@
         });
 
 
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "About";
+        column.Caption = "About";
+        column.ColumnType = MVCxGridViewColumnType.TextBox;
+        column.Width = Unit.Pixel(250);
     });
 
     settings.Columns.Add(column => { column.SetEditItemTemplateContent(" "); });

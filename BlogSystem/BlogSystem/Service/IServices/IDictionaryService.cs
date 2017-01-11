@@ -8,12 +8,12 @@ namespace Service.IServices
         IEnumerable<Dictionary> GetAllTreeItems();
         Dictionary GetByID(int? ID);
 
-        int? Add(Dictionary role);
-        IEnumerable<int?> AddRange(List<Dictionary> roles);
+        int? Add(Dictionary dictionary);
+        IEnumerable<int?> AddRange(List<Dictionary> dictionaries);
 
-        void Update(Dictionary role);
+        void Update(Dictionary dictionary);
 
-        void Remove(Dictionary role);
-        void RemoveRange(List<Dictionary> roles);
+        void Remove(Dictionary dictionary);
+        void RemoveRange(List<Dictionary> dictionaries);
     }
 }

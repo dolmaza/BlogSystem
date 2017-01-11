@@ -8,6 +8,7 @@ namespace Core.Entities
         public int? PostID { get; set; }
         public int? UserID { get; set; }
         public int? Rating { get; set; }
+        public string Review { get; set; }
         public DateTime? CreateTime { get; set; }
 
         public Post Post { get; set; }

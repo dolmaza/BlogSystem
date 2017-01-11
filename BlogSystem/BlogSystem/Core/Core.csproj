@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\Configurations\AdvertisementConfiguration.cs" />
     <Compile Include="DB\Configurations\CategoryConfiguration.cs" />
     <Compile Include="DB\Configurations\DictionaryConfiguration.cs" />
     <Compile Include="DB\Configurations\PermissionConfiguration.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="DB\Configurations\RoleConfiguration.cs" />
     <Compile Include="DB\Configurations\UserConfiguration.cs" />
     <Compile Include="DB\DbCoreDataContext.cs" />
+    <Compile Include="Entities\Advertisement.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Dictionary.cs" />
     <Compile Include="Entities\Permission.cs" />
@@ -70,8 +72,13 @@
     <Compile Include="Entities\PostView.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="IRepositries\IAdvertisementRepository.cs" />
+    <Compile Include="IRepositries\ICategoryRepository.cs" />
     <Compile Include="IRepositries\IDictionaryRepository.cs" />
     <Compile Include="IRepositries\IPermissionRepository.cs" />
+    <Compile Include="IRepositries\IPostRatingRepository.cs" />
+    <Compile Include="IRepositries\IPostRepository.cs" />
+    <Compile Include="IRepositries\IPostViewRepository.cs" />
     <Compile Include="IRepositries\IRepository.cs" />
     <Compile Include="IRepositries\IRoleRepository.cs" />
     <Compile Include="IRepositries\IUserRepository.cs" />
@@ -107,10 +114,23 @@
     <Compile Include="Migrations\201701102014264_AddUserCategoriesTable.Designer.cs">
       <DependentUpon>201701102014264_AddUserCategoriesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701111826297_AddReviewColumnToPostRatingTable.cs" />
+    <Compile Include="Migrations\201701111826297_AddReviewColumnToPostRatingTable.Designer.cs">
+      <DependentUpon>201701111826297_AddReviewColumnToPostRatingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701111952251_AddAdvertisementTabel.cs" />
+    <Compile Include="Migrations\201701111952251_AddAdvertisementTabel.Designer.cs">
+      <DependentUpon>201701111952251_AddAdvertisementTabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AdvertisementRepository.cs" />
+    <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\DictionaryRepository.cs" />
     <Compile Include="Repositories\PermissionRepository.cs" />
+    <Compile Include="Repositories\PostRatingRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\PostViewRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -143,6 +163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701102014264_AddUserCategoriesTable.resx">
       <DependentUpon>201701102014264_AddUserCategoriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111826297_AddReviewColumnToPostRatingTable.resx">
+      <DependentUpon>201701111826297_AddReviewColumnToPostRatingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701111952251_AddAdvertisementTabel.resx">
+      <DependentUpon>201701111952251_AddAdvertisementTabel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

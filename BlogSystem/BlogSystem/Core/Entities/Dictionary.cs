@@ -25,10 +25,15 @@ namespace Core.Entities
         public ICollection<Post> PostTypes { get; set; }
         public ICollection<Post> PostLanguages { get; set; }
         public ICollection<Post> PostStatuses { get; set; }
+        public ICollection<Advertisement> AdvertisementStatuses { get; set; }
 
         public Dictionary()
         {
             Childrens = new List<Dictionary>();
+            PostTypes = new List<Post>();
+            PostLanguages = new List<Post>();
+            PostStatuses = new List<Post>();
+            AdvertisementStatuses = new List<Advertisement>();
             CreateTime = DateTime.Now;
         }
     }

@@ -12,11 +12,13 @@
     settings.SettingsEditing.UpdateNodeRouteValues = Model.UpdateUrl;
     settings.SettingsEditing.DeleteNodeRouteValues = Model.DeleteUrl;
 
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+
     settings.CommandColumn.Visible = true;
     settings.CommandColumn.NewButton.Visible = true;
     settings.CommandColumn.DeleteButton.Visible = true;
     settings.CommandColumn.EditButton.Visible = true;
-    settings.CommandColumn.VisibleIndex = 7;
+    settings.CommandColumn.VisibleIndex = 8;
     settings.SettingsBehavior.AutoExpandAllNodes = true;
 
 
@@ -25,7 +27,7 @@
         column.FieldName = "Caption";
         column.Caption = "Caption";
         column.ColumnType = MVCxTreeListColumnType.TextBox;
-        column.Width = Unit.Pixel(150);
+        column.Width = Unit.Pixel(250);
 
         column.EditorProperties().TextBox(c =>
         {
@@ -40,7 +42,16 @@
         column.Caption = "Caption Eng.";
         column.ColumnType = MVCxTreeListColumnType.TextBox;
         column.Width = Unit.Pixel(150);
-        
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "CaptionRus";
+        column.Caption = "Caption Rus.";
+        column.ColumnType = MVCxTreeListColumnType.TextBox;
+        column.Width = Unit.Pixel(150);
+
     });
 
     settings.Columns.Add(column =>
@@ -72,7 +83,7 @@
         column.FieldName = "DecimalValue";
         column.Caption = "Decimal Value";
         column.ColumnType = MVCxTreeListColumnType.SpinEdit;
-        column.Width = Unit.Pixel(100);
+        column.Width = Unit.Pixel(130);
 
         column.EditorProperties().SpinEdit(c =>
         {
@@ -87,7 +98,7 @@
     settings.Columns.Add(column =>
     {
         column.FieldName = "Code";
-        column.Caption = "Dictionary Code";
+        column.Caption = "Code";
         column.ColumnType = MVCxTreeListColumnType.SpinEdit;
         column.Width = Unit.Pixel(100);
 

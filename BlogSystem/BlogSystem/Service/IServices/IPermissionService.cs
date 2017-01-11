@@ -9,12 +9,12 @@ namespace Service.IServices
         IEnumerable<Permission> GetAllMenuItems();
         Permission GetByID(int? ID);
 
-        int? Add(Permission role);
-        IEnumerable<int?> AddRange(List<Permission> roles);
+        int? Add(Permission permission);
+        IEnumerable<int?> AddRange(List<Permission> permissions);
 
-        void Update(Permission role);
+        void Update(Permission permission);
 
-        void Remove(Permission role);
-        void RemoveRange(List<Permission> roles);
+        void Remove(Permission permission);
+        void RemoveRange(List<Permission> permissions);
     }
 }

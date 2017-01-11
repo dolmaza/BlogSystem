@@ -1,14 +1,15 @@
-﻿using Core.Entities;
+﻿using BlogSystem.Admin.Models;
+using BlogSystem.Admin.Reusable;
+using BlogSystem.Reusable.Extentions;
+using Core.Entities;
 using DevExpress.Web.Mvc;
 using Service.IServices;
 using Service.Properties;
 using Service.Services;
+using Service.Utilities;
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using BlogSystem.Admin.Models;
-using BlogSystem.Admin.Reusable;
-using BlogSystem.Reusable.Extentions;
 
 namespace BlogSystem.Areas.Admin.Controllers
 {
@@ -50,7 +51,8 @@ namespace BlogSystem.Areas.Admin.Controllers
                 Lastname = model.Lastname,
                 Password = model.Password?.ToMD5(),
                 IsActive = model.IsActive,
-                RoleID = model.RoleID
+                RoleID = model.RoleID,
+                About = model.About,
             });
 
             if (_userService.IsError)
@@ -79,6 +81,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                 user.Lastname = model.Lastname;
                 user.IsActive = model.IsActive;
                 user.RoleID = model.RoleID;
+                user.About = model.About;
 
                 _userService.Update(user);
 
@@ -125,11 +128,13 @@ namespace BlogSystem.Areas.Admin.Controllers
                 GridItems = _userService.GetAllGridItems().Select(u => new UsersViewModel.UsersGridViewModel.UserGridItem
                 {
                     ID = u.ID,
+                    Avatar = string.IsNullOrWhiteSpace(u.Avatar) ? AppSettings.DefaultAvatarHttpPath : $"{AppSettings.UploadFolderHttpPath}{u.Avatar}",
                     Email = u.Email,
                     Firstname = u.Firstname,
                     Lastname = u.Lastname,
                     IsActive = u.IsActive,
-                    RoleID = u.RoleID
+                    RoleID = u.RoleID,
+                    About = u.About,
                 }).ToList(),
 
                 Roles = _roleService.GetAllDropDownItems().ToList()

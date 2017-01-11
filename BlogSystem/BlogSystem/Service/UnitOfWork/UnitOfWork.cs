@@ -16,6 +16,11 @@ namespace Service.UnitOfWork
         public IRoleRepository RoleRepository { get; private set; }
         public IPermissionRepository PermissionRepository { get; private set; }
         public IDictionaryRepository DictionaryRepository { get; private set; }
+        public IAdvertisementRepository AdvertisementRepository { get; private set; }
+        public ICategoryRepository CategoryRepository { get; private set; }
+        public IPostRepository PostRepository { get; private set; }
+        public IPostViewRepository PostViewRepository { get; private set; }
+        public IPostRatingRepository PostRatingRepository { get; private set; }
 
         public UnitOfWork(DbCoreDataContext context)
         {
@@ -24,6 +29,11 @@ namespace Service.UnitOfWork
             UserRepository = new UserRepository(_context);
             RoleRepository = new RoleRepository(_context);
             PermissionRepository = new PermissionRepository(_context);
+            AdvertisementRepository = new AdvertisementRepository(_context);
+            CategoryRepository = new CategoryRepository(_context);
+            PostRepository = new PostRepository(_context);
+            PostViewRepository = new PostViewRepository(_context);
+            PostRatingRepository = new PostRatingRepository(_context);
 
         }
 

@@ -26,11 +26,13 @@ namespace Core.Entities
 
         public ICollection<PostRating> Ratings { get; set; }
         public ICollection<PostView> Views { get; set; }
+        public ICollection<Advertisement> Advertisements { get; set; }
 
         public Post()
         {
             Views = new List<PostView>();
             Ratings = new List<PostRating>();
+            Advertisements = new List<Advertisement>();
             CreateTime = DateTime.Now;
         }
     }

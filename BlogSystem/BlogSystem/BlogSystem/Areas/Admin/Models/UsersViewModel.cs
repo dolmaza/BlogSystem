@@ -1,6 +1,6 @@
-﻿using Service.Utilities;
+﻿using BlogSystem.Admin.Reusable;
+using Service.Utilities;
 using System.Collections.Generic;
-using BlogSystem.Admin.Reusable;
 
 namespace BlogSystem.Admin.Models
 {
@@ -17,11 +17,14 @@ namespace BlogSystem.Admin.Models
             {
                 public int? ID { get; set; }
                 public int? RoleID { get; set; }
+                public string Avatar { get; set; }
                 public string Email { get; set; }
                 public string Password { get; set; }
                 public string Firstname { get; set; }
                 public string Lastname { get; set; }
                 public bool IsActive { get; set; }
+                public string About { get; set; }
+
             }
 
         }

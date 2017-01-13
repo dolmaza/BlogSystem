@@ -115,6 +115,15 @@ namespace Service.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email must be unique.
+        /// </summary>
+        public static string ValidationEmailUnique {
+            get {
+                return ResourceManager.GetString("ValidationEmailUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email or Password is not correct.
         /// </summary>
         public static string ValidationInvalidEmailOrPassword {

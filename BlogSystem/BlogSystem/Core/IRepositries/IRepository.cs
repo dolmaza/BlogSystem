@@ -38,6 +38,8 @@ namespace Core.IRepositries
             params Expression<Func<TEntity, object>>[] includes
         );
 
+        bool Exists(Expression<Func<TEntity, bool>> filter);
+
         TEntity GetByID(object ID);
 
         int? GetCount(Expression<Func<TEntity, bool>> filter = null);

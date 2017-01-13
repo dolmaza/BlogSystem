@@ -140,6 +140,11 @@ namespace Core.Repositories
             ).Sum(sumProperty);
         }
 
+        public bool Exists(Expression<Func<TEntity, bool>> filter)
+        {
+            return GetQueryable(filter: filter).Any();
+        }
+
         #endregion
 
         #region CRUD Operations

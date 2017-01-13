@@ -44,20 +44,27 @@ namespace BlogSystem.Areas.Admin.Controllers
         [Route("users/add", Name = "UsersAdd")]
         public ActionResult UsersAdd([ModelBinder(typeof(DevExpressEditorsBinder))] UsersViewModel.UsersGridViewModel.UserGridItem model)
         {
-            _userService.Add(new User
+            if (_userService.IsUserEmailNotUnique(model.Email))
             {
-                Email = model.Email,
-                Firstname = model.Firstname,
-                Lastname = model.Lastname,
-                Password = model.Password?.ToMD5(),
-                IsActive = model.IsActive,
-                RoleID = model.RoleID,
-                About = model.About,
-            });
+                throw new Exception(Resources.ValidationEmailUnique);
+            }
+            else
+            {
+                _userService.Add(new User
+                {
+                    Email = model.Email,
+                    Firstname = model.Firstname,
+                    Lastname = model.Lastname,
+                    Password = model.Password?.ToMD5(),
+                    IsActive = model.IsActive,
+                    RoleID = model.RoleID,
+                    About = model.About,
+                });
 
-            if (_userService.IsError)
-            {
-                throw new Exception(Resources.Abort);
+                if (_userService.IsError)
+                {
+                    throw new Exception(Resources.Abort);
+                }
             }
 
             return PartialView("_UsersGrid", GetGridViewModel());
@@ -71,6 +78,10 @@ namespace BlogSystem.Areas.Admin.Controllers
             if (user == null)
             {
                 throw new Exception(Resources.Abort);
+            }
+            else if (_userService.IsUserEmailNotUnique(model.Email, user.ID))
+            {
+                throw new Exception(Resources.ValidationEmailUnique);
             }
             else
             {

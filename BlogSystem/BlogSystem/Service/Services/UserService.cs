@@ -32,6 +32,11 @@ namespace Service.Services
             return user;
         }
 
+        public bool IsUserEmailNotUnique(string email, int? ID = null)
+        {
+            return UnitOfWork.UserRepository.Exists(u => (ID == null && u.Email == email) || (u.ID != ID && u.Email == email));
+        }
+
         public int? Add(User user)
         {
             UnitOfWork.UserRepository.Add(user);

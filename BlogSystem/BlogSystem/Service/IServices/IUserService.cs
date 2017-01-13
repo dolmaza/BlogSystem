@@ -9,6 +9,8 @@ namespace Service.IServices
         User GetByID(int? ID);
         User GetByEmailAndPassword(string email, string passwordMd5);
 
+        bool IsUserEmailNotUnique(string email, int? ID = null);
+
         int? Add(User user);
         IEnumerable<int?> AddRange(List<User> users);
 

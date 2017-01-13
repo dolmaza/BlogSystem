@@ -135,6 +135,9 @@
   <data name="TextConfirmDelete" xml:space="preserve">
     <value>Do you really want to delete?</value>
   </data>
+  <data name="ValidationEmailUnique" xml:space="preserve">
+    <value>Email must be unique</value>
+  </data>
   <data name="ValidationInvalidEmailOrPassword" xml:space="preserve">
     <value>Email or Password is not correct</value>
   </data>

@@ -5,12 +5,12 @@ namespace Service.IServices
 {
     public interface IPermissionService : IBaseService
     {
-        IEnumerable<Permission> GetAllTreeItems();
-        IEnumerable<Permission> GetAllMenuItems();
+        List<Permission> GetAllTreeItems();
+        List<Permission> GetAllMenuItems();
         Permission GetByID(int? ID);
 
         int? Add(Permission permission);
-        IEnumerable<int?> AddRange(List<Permission> permissions);
+        List<int?> AddRange(List<Permission> permissions);
 
         void Update(Permission permission);
 

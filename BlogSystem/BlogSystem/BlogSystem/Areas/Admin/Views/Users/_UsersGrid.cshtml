@@ -8,7 +8,7 @@
     settings.CommandColumn.Visible = true;
     settings.CommandColumn.ShowDeleteButton = true;
     settings.CommandColumn.ShowEditButton = true;
-    settings.CommandColumn.VisibleIndex = 8;
+    settings.CommandColumn.VisibleIndex =0;
     settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
 
 
@@ -19,21 +19,21 @@
 
     settings.Columns.Add(column =>
     {
+        column.FieldName = "AvatarBytes";
         column.Caption = "Avatar";
-        column.Width = Unit.Pixel(70);
-
-        column.SetDataItemTemplateContent(c =>
+        column.Settings.ShowFilterRowMenu = DefaultBoolean.False;
+        column.Settings.AllowAutoFilter = DefaultBoolean.False;
+        column.Width = Unit.Pixel(100);
+        column.EditorProperties().BinaryImage(p =>
         {
-            var avatar = DataBinder.Eval(c.DataItem, "Avatar");
-            ViewContext.Writer.Write($"<img src='{avatar}' width=50 heigth=50 style='border-radius: 50%;' alt='Avatar'>");
+            p.ImageHeight = 80;
+            p.ImageWidth = 80;
+            p.EnableServerResize = true;
+            p.ImageSizeMode = ImageSizeMode.FitProportional;
+            p.CallbackRouteValues = Model.AvatarUpdateUrl;
+            p.EditingSettings.Enabled = true;
+            p.EditingSettings.UploadSettings.UploadValidationSettings.MaxFileSize = 4194304;
         });
-
-        column.SetEditItemTemplateContent(c =>
-        {
-            var avatar = DataBinder.Eval(c.DataItem, "Avatar");
-            ViewContext.Writer.Write($"<img src='{avatar}' width=50 heigth=50 style='border-radius: 50%;' alt='Avatar'>");
-        });
-
     });
 
     settings.Columns.Add(column =>

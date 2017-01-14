@@ -8,14 +8,14 @@ namespace Service.Services
 {
     public class RoleService : BaseService, IRoleService
     {
-        public IEnumerable<Role> GetAllGridItems()
+        public List<Role> GetAllGridItems()
         {
             var roles = UnitOfWork.RoleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime)).ToList();
 
             return roles;
         }
 
-        public IEnumerable<SimpleKeyValue<int?, string>> GetAllDropDownItems(int? selectedID = null)
+        public List<SimpleKeyValue<int?, string>> GetAllDropDownItems(int? selectedID = null)
         {
             var roles = UnitOfWork.RoleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime))
                 .Select(r => new SimpleKeyValue<int?, string>
@@ -28,7 +28,7 @@ namespace Service.Services
             return roles;
         }
 
-        public IEnumerable<int?> GetRolePermissions(int? ID)
+        public List<int?> GetRolePermissions(int? ID)
         {
             var rolePermissions = UnitOfWork.RoleRepository.Get(filter: r => r.ID == ID, includes: r => r.Permissions)
                 .FirstOrDefault()?.Permissions
@@ -54,7 +54,7 @@ namespace Service.Services
             return role.ID;
         }
 
-        public IEnumerable<int?> AddRange(List<Role> roles)
+        public List<int?> AddRange(List<Role> roles)
         {
             UnitOfWork.RoleRepository.AddRange(roles);
             UnitOfWork.Complate();

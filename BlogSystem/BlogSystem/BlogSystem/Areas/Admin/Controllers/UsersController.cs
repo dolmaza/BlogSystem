@@ -1,5 +1,6 @@
 ﻿using BlogSystem.Admin.Models;
 using BlogSystem.Admin.Reusable;
+using BlogSystem.Admin.Reusable.Helpers;
 using BlogSystem.Reusable.Extentions;
 using Core.Entities;
 using DevExpress.Web.Mvc;
@@ -41,6 +42,12 @@ namespace BlogSystem.Areas.Admin.Controllers
             return PartialView("_UsersGrid", GetGridViewModel());
         }
 
+        [Route("users/avatar/update", Name = "UsersAvatarUpdate")]
+        public ActionResult BinaryImageColumnAvatarUpdate()
+        {
+            return BinaryImageEditExtension.GetCallbackResult();
+        }
+
         [Route("users/add", Name = "UsersAdd")]
         public ActionResult UsersAdd([ModelBinder(typeof(DevExpressEditorsBinder))] UsersViewModel.UsersGridViewModel.UserGridItem model)
         {
@@ -50,8 +57,11 @@ namespace BlogSystem.Areas.Admin.Controllers
             }
             else
             {
+                var avatarName = model.AvatarBytes == null ? null : UserHelper.GetAvatarUniqueName();
+
                 _userService.Add(new User
                 {
+                    Avatar = avatarName,
                     Email = model.Email,
                     Firstname = model.Firstname,
                     Lastname = model.Lastname,
@@ -64,6 +74,10 @@ namespace BlogSystem.Areas.Admin.Controllers
                 if (_userService.IsError)
                 {
                     throw new Exception(Resources.Abort);
+                }
+                else
+                {
+                    UserHelper.SaveAvatar(model.AvatarBytes, avatarName);
                 }
             }
 
@@ -85,7 +99,11 @@ namespace BlogSystem.Areas.Admin.Controllers
             }
             else
             {
+                var avatarName = model.AvatarBytes == null ? null : UserHelper.GetAvatarUniqueName();
+                var oldAvatarName = user.Avatar;
+
                 user.ID = model.ID;
+                user.Avatar = string.IsNullOrWhiteSpace(avatarName) ? user.Avatar : avatarName;
                 user.Email = model.Email;
                 user.Password = model.Password?.ToMD5() ?? user.Password;
                 user.Firstname = model.Firstname;
@@ -99,6 +117,10 @@ namespace BlogSystem.Areas.Admin.Controllers
                 if (_userService.IsError)
                 {
                     throw new Exception(Resources.Abort);
+                }
+                else
+                {
+                    UserHelper.SaveAvatar(model.AvatarBytes, avatarName, oldAvatarName);
                 }
             }
 
@@ -116,6 +138,9 @@ namespace BlogSystem.Areas.Admin.Controllers
             {
                 throw new Exception(Resources.Abort);
             }
+
+            UserHelper.DeleteAvatar(user.Avatar);
+
 
             _userService.Remove(user);
 
@@ -136,10 +161,11 @@ namespace BlogSystem.Areas.Admin.Controllers
                 AddNewUrl = Url.RouteUrl("UsersAdd"),
                 UpdateUrl = Url.RouteUrl("UsersUpdate"),
                 DeleteUrl = Url.RouteUrl("UsersDelete"),
+                AvatarUpdateUrl = Url.RouteUrl("UsersAvatarUpdate"),
                 GridItems = _userService.GetAllGridItems().Select(u => new UsersViewModel.UsersGridViewModel.UserGridItem
                 {
                     ID = u.ID,
-                    Avatar = string.IsNullOrWhiteSpace(u.Avatar) ? AppSettings.DefaultAvatarHttpPath : $"{AppSettings.UploadFolderHttpPath}{u.Avatar}",
+                    AvatarBytes = string.IsNullOrWhiteSpace(u.Avatar) ? Utilities.ConvertImageToByteArray(AppSettings.DefaultAvatarPhysicalPath) : Utilities.ConvertImageToByteArray($"{AppSettings.UploadFolderPhysicalPath}{u.Avatar}"),
                     Email = u.Email,
                     Firstname = u.Firstname,
                     Lastname = u.Lastname,

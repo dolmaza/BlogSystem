@@ -12,7 +12,8 @@ namespace Service.Utilities
 
         public static string UploadFolderPhysicalPath => GetConfigValue();
         public static string UploadFolderHttpPath => GetConfigValue();
-        public static string DefaultAvatarHttpPath => "/Content/images/avatar.png";
+        public static string DefaultAvatarHttpPath => GetConfigValue();
+        public static string DefaultAvatarPhysicalPath => GetConfigValue();
 
     }
 

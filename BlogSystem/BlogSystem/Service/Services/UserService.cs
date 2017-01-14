@@ -7,7 +7,7 @@ namespace Service.Services
 {
     public class UserService : BaseService, IUserService
     {
-        public IEnumerable<User> GetAllGridItems()
+        public List<User> GetAllGridItems()
         {
             var users = UnitOfWork.UserRepository.GetAll(orderBy: ob => ob.OrderByDescending(u => u.CreateTime)).ToList();
 
@@ -46,7 +46,7 @@ namespace Service.Services
             return user.ID;
         }
 
-        public IEnumerable<int?> AddRange(List<User> users)
+        public List<int?> AddRange(List<User> users)
         {
             UnitOfWork.UserRepository.AddRange(users);
             UnitOfWork.Complate();

@@ -1,4 +1,6 @@
-﻿using Core.Entities;
+﻿using BlogSystem.Admin.Models;
+using BlogSystem.Admin.Reusable.FilterAttributes;
+using Core.Entities;
 using DevExpress.Web;
 using DevExpress.Web.Mvc;
 using Service.Properties;
@@ -6,8 +8,6 @@ using Service.Utilities;
 using System;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
-using BlogSystem.Admin.Models;
-using BlogSystem.Admin.Reusable.FilterAttributes;
 
 namespace BlogSystem.Admin.Reusable
 {
@@ -95,7 +95,7 @@ namespace BlogSystem.Admin.Reusable
         #endregion Properties
     }
 
-    public class TreeListVeiwModelBase
+    public class TreeListViewModelBase
     {
         #region Properties
         public string AddNewUrl { get; set; }

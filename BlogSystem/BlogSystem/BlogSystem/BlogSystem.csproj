@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Content\css\style.css" />
+    <Content Include="Areas\Admin\Content\scripts\Category\Index.js" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\plugins\adminLTE\css\AdminLTE.min.css" />
     <Content Include="Content\plugins\adminLTE\css\skin-blue.min.css" />
@@ -187,17 +188,21 @@
     <Content Include="Areas\Admin\Content\scripts\Role\Index.js" />
     <Content Include="Areas\Admin\Content\scripts\Users\Index.js" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DictionariesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolePermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Models\CategoriesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\DictionariesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HomeViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LayoutViewModel.cs" />
@@ -207,6 +212,7 @@
     <Compile Include="Areas\Admin\Models\UsersViewModel.cs" />
     <Compile Include="Areas\Admin\Reusable\BaseClasses.cs" />
     <Compile Include="Areas\Admin\Reusable\FilterAttributes\BeforePageLoad.cs" />
+    <Compile Include="Areas\Admin\Reusable\Helpers\UserHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +253,8 @@
     <Content Include="Areas\Admin\Views\Home\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Dictionaries\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dictionaries\_DictionariesTree.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\_CategoriesTree.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,6 +268,7 @@
     <Folder Include="Content\scripts\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+    <Folder Include="Upload\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@ namespace BlogSystem.Admin.Models
 
         public class UsersGridViewModel : GridViewModelBase
         {
+            public string AvatarUpdateUrl { get; set; }
             public List<UserGridItem> GridItems { get; set; }
             public List<SimpleKeyValue<int?, string>> Roles { get; set; }
 
@@ -17,7 +18,7 @@ namespace BlogSystem.Admin.Models
             {
                 public int? ID { get; set; }
                 public int? RoleID { get; set; }
-                public string Avatar { get; set; }
+                public byte[] AvatarBytes { get; set; }
                 public string Email { get; set; }
                 public string Password { get; set; }
                 public string Firstname { get; set; }

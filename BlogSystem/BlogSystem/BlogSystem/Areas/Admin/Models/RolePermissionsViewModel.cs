@@ -24,7 +24,7 @@ namespace BlogSystem.Admin.Models
 
         }
 
-        public class RolePermissionsPermissionsTreeViewModel : TreeListVeiwModelBase
+        public class RolePermissionsPermissionsTreeViewModel : TreeListViewModelBase
         {
             public List<RolePermissionsPermissionTreeItem> TreeItems { get; set; }
 

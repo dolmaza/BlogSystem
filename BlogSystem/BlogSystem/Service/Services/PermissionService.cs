@@ -7,13 +7,13 @@ namespace Service.Services
 {
     public class PermissionService : BaseService, IPermissionService
     {
-        public IEnumerable<Permission> GetAllTreeItems()
+        public List<Permission> GetAllTreeItems()
         {
             var permissions = UnitOfWork.PermissionRepository.GetAll(orderBy: ob => ob.OrderBy(p => p.SortIndex)).ToList();
             return permissions;
         }
 
-        public IEnumerable<Permission> GetAllMenuItems()
+        public List<Permission> GetAllMenuItems()
         {
             var permissions = UnitOfWork.PermissionRepository.Get
                 (
@@ -39,7 +39,7 @@ namespace Service.Services
             return permission.ID;
         }
 
-        public IEnumerable<int?> AddRange(List<Permission> permissions)
+        public List<int?> AddRange(List<Permission> permissions)
         {
             UnitOfWork.PermissionRepository.AddRange(permissions);
             UnitOfWork.Complate();

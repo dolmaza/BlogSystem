@@ -7,7 +7,7 @@ namespace BlogSystem.Admin.Models
     {
         public DictionariesTreeViewModel TreeViewModel { get; set; }
 
-        public class DictionariesTreeViewModel : TreeListVeiwModelBase
+        public class DictionariesTreeViewModel : TreeListViewModelBase
         {
             public List<DictionaryTreeItem> TreeItems { get; set; }
 

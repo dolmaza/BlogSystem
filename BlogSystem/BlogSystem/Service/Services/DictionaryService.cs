@@ -7,7 +7,7 @@ namespace Service.Services
 {
     public class DictionaryService : BaseService, IDictionaryService
     {
-        public IEnumerable<Dictionary> GetAllTreeItems()
+        public List<Dictionary> GetAllTreeItems()
         {
             var dictionaries = UnitOfWork.DictionaryRepository.GetAll(orderBy: ob => ob.OrderBy(d => d.SortIndex)).ToList();
 
@@ -30,7 +30,7 @@ namespace Service.Services
             return dictionary.ID;
         }
 
-        public IEnumerable<int?> AddRange(List<Dictionary> dictionaries)
+        public List<int?> AddRange(List<Dictionary> dictionaries)
         {
             UnitOfWork.DictionaryRepository.AddRange(dictionaries);
             UnitOfWork.Complate();

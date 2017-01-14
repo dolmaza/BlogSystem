@@ -5,14 +5,14 @@ namespace Service.IServices
 {
     public interface IUserService : IBaseService
     {
-        IEnumerable<User> GetAllGridItems();
+        List<User> GetAllGridItems();
         User GetByID(int? ID);
         User GetByEmailAndPassword(string email, string passwordMd5);
 
         bool IsUserEmailNotUnique(string email, int? ID = null);
 
         int? Add(User user);
-        IEnumerable<int?> AddRange(List<User> users);
+        List<int?> AddRange(List<User> users);
 
         void Update(User user);
 

@@ -7,7 +7,7 @@ namespace BlogSystem.Admin.Models
     {
         public PermissionsTreeViewModel TreeViewModel { get; set; }
 
-        public class PermissionsTreeViewModel : TreeListVeiwModelBase
+        public class PermissionsTreeViewModel : TreeListViewModelBase
         {
             public List<PermissionTreeItem> TreeItems { get; set; }
 

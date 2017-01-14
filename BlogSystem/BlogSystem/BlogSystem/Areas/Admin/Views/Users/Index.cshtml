@@ -24,7 +24,10 @@
                 </div>
             </div>
             <div class="box-body">
-                @Html.Partial("_UsersGrid", Model.GridViewModel)
+                @using (Html.BeginForm())
+                {
+                    @Html.Partial("_UsersGrid", Model.GridViewModel)
+                }
             </div>
         </div>
     </div>

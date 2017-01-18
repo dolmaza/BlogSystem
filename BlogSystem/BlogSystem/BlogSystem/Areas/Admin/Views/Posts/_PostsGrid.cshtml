@@ -1,0 +1,22 @@
+﻿@model PostsViewModel.PostsGridViewModel
+@Html.DevExpress().GridView(settings =>
+{
+    settings = Model.GenerateGridViewDefaultSettings(settings);
+    settings.Name = "PostsGrid";
+    settings.KeyFieldName = "ID";
+
+    settings.CallbackRouteValues = Model.ListUrl;
+
+    settings.Columns.Add(column =>
+    {
+        column.SetDataItemTemplateContent(c =>
+        {
+            ViewContext.Writer.Write(Html.Partial("_PostItem", new PostsViewModel.PostsGridViewModel.PostGridItem
+            {
+                
+            }));
+        });
+    });
+
+
+}).Bind(Model.GridItems).GetHtml()

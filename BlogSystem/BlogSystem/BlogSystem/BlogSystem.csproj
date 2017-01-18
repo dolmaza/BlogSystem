@@ -112,6 +112,7 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Content\css\style.css" />
     <Content Include="Areas\Admin\Content\scripts\Category\Index.js" />
+    <Content Include="Areas\Admin\Content\scripts\Post\Index.js" />
     <Content Include="Content\images\avatar.png" />
     <Content Include="Content\plugins\adminLTE\css\AdminLTE.min.css" />
     <Content Include="Content\plugins\adminLTE\css\skin-blue.min.css" />
@@ -199,6 +200,7 @@
     <Compile Include="Areas\Admin\Controllers\DictionariesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\PermissionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolePermissionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
@@ -207,6 +209,7 @@
     <Compile Include="Areas\Admin\Models\HomeViewModel.cs" />
     <Compile Include="Areas\Admin\Models\LayoutViewModel.cs" />
     <Compile Include="Areas\Admin\Models\PermissionsViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\PostsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RolePermissionsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\RolesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\UsersViewModel.cs" />
@@ -255,6 +258,9 @@
     <Content Include="Areas\Admin\Views\Dictionaries\_DictionariesTree.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\_CategoriesTree.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\_PostsGrid.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\_PostItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

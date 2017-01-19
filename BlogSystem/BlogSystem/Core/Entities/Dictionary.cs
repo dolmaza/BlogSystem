@@ -8,7 +8,7 @@ namespace Core.Entities
         public int? ID { get; set; }
         public int? ParentID { get; set; }
         public string Caption { get; set; }
-        public string CaptionEng { get; set; }
+        public string CaptionKa { get; set; }
         public string CaptionRus { get; set; }
         public string StringCode { get; set; }
         public int? IntCode { get; set; }

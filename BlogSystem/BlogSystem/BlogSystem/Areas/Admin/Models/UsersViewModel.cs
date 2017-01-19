@@ -12,7 +12,7 @@ namespace BlogSystem.Admin.Models
         {
             public string AvatarUpdateUrl { get; set; }
             public List<UserGridItem> GridItems { get; set; }
-            public List<SimpleKeyValue<int?, string>> Roles { get; set; }
+            public List<SimpleKeyValueDropDownItem<int?, string>> Roles { get; set; }
 
             public class UserGridItem
             {

@@ -86,7 +86,7 @@
     <Compile Include="Utilities\AjaxResponse.cs" />
     <Compile Include="Utilities\AppSettings.cs" />
     <Compile Include="Utilities\Enums.cs" />
-    <Compile Include="Utilities\SimpleKeyValue.cs" />
+    <Compile Include="Utilities\SimpleKeyValueDropDownItem.cs" />
     <Compile Include="Utilities\SuccessErrorMessageInfo.cs" />
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>

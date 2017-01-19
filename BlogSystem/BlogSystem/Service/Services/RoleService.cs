@@ -15,10 +15,10 @@ namespace Service.Services
             return roles;
         }
 
-        public List<SimpleKeyValue<int?, string>> GetAllDropDownItems(int? selectedID = null)
+        public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownItems(int? selectedID = null)
         {
             var roles = UnitOfWork.RoleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime))
-                .Select(r => new SimpleKeyValue<int?, string>
+                .Select(r => new SimpleKeyValueDropDownItem<int?, string>
                 {
                     Key = r.ID,
                     Value = r.Caption,

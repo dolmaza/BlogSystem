@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Service.Utilities;
 using System.Collections.Generic;
 
 namespace Service.IServices
@@ -7,6 +8,8 @@ namespace Service.IServices
     {
         List<Dictionary> GetAllTreeItems();
         Dictionary GetByID(int? ID);
+        List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostStatusItems(int? selectedID = null);
+        List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostLanguageItems(int? selectedID = null);
 
         int? Add(Dictionary dictionary);
         List<int?> AddRange(List<Dictionary> dictionaries);

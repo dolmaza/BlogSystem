@@ -18,7 +18,7 @@
     settings.CommandColumn.NewButton.Visible = true;
     settings.CommandColumn.DeleteButton.Visible = true;
     settings.CommandColumn.EditButton.Visible = true;
-    settings.CommandColumn.VisibleIndex = 8;
+    settings.CommandColumn.VisibleIndex = 0;
     settings.SettingsBehavior.AutoExpandAllNodes = true;
 
 
@@ -38,7 +38,7 @@
 
     settings.Columns.Add(column =>
     {
-        column.FieldName = "CaptionEng";
+        column.FieldName = "CaptionKa";
         column.Caption = "Caption Eng.";
         column.ColumnType = MVCxTreeListColumnType.TextBox;
         column.Width = Unit.Pixel(150);
@@ -59,7 +59,7 @@
         column.FieldName = "StringCode";
         column.Caption = "String Code";
         column.ColumnType = MVCxTreeListColumnType.TextBox;
-        column.Width = Unit.Pixel(100);
+        column.Width = Unit.Pixel(200);
 
     });
 

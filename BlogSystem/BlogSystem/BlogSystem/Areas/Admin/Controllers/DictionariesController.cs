@@ -44,7 +44,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                 ID = model.ID,
                 ParentID = model.ParentID,
                 Caption = model.Caption,
-                CaptionEng = model.CaptionEng,
+                CaptionKa = model.CaptionEng,
                 CaptionRus = model.CaptionRus,
                 StringCode = model.StringCode,
                 IntCode = model.IntCode,
@@ -74,7 +74,7 @@ namespace BlogSystem.Areas.Admin.Controllers
             {
                 dictionary.ParentID = model.ParentID;
                 dictionary.Caption = model.Caption;
-                dictionary.CaptionEng = model.CaptionEng;
+                dictionary.CaptionKa = model.CaptionEng;
                 dictionary.CaptionRus = model.CaptionRus;
                 dictionary.StringCode = model.StringCode;
                 dictionary.IntCode = model.IntCode;
@@ -129,7 +129,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                     ID = d.ID,
                     ParentID = d.ParentID,
                     Caption = d.Caption,
-                    CaptionEng = d.CaptionEng,
+                    CaptionEng = d.CaptionKa,
                     CaptionRus = d.CaptionRus,
                     StringCode = d.StringCode,
                     IntCode = d.IntCode,

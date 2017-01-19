@@ -15,7 +15,7 @@ namespace Core.DB.Configurations
                 .IsRequired()
                 .HasMaxLength(200);
 
-            Property(d => d.CaptionEng)
+            Property(d => d.CaptionKa)
                 .HasMaxLength(200);
 
             Property(d => d.CaptionRus)

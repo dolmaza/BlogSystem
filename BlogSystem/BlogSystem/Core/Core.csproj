@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201701111952251_AddAdvertisementTabel.Designer.cs">
       <DependentUpon>201701111952251_AddAdvertisementTabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701190950202_RenamedCaptionEngToCaptionKaInDictionariesTableAddDictionaryTrigger.cs" />
+    <Compile Include="Migrations\201701190950202_RenamedCaptionEngToCaptionKaInDictionariesTableAddDictionaryTrigger.Designer.cs">
+      <DependentUpon>201701190950202_RenamedCaptionEngToCaptionKaInDictionariesTableAddDictionaryTrigger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdvertisementRepository.cs" />
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701111952251_AddAdvertisementTabel.resx">
       <DependentUpon>201701111952251_AddAdvertisementTabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701190950202_RenamedCaptionEngToCaptionKaInDictionariesTableAddDictionaryTrigger.resx">
+      <DependentUpon>201701190950202_RenamedCaptionEngToCaptionKaInDictionariesTableAddDictionaryTrigger.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

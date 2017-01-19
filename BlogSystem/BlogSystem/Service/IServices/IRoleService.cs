@@ -7,7 +7,7 @@ namespace Service.IServices
     public interface IRoleService : IBaseService
     {
         List<Role> GetAllGridItems();
-        List<SimpleKeyValue<int?, string>> GetAllDropDownItems(int? selectedID = null);
+        List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownItems(int? selectedID = null);
         List<int?> GetRolePermissions(int? ID);
         Role GetByID(int? ID);
 

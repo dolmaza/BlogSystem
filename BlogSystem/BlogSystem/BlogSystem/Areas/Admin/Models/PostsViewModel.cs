@@ -1,4 +1,5 @@
 ﻿using BlogSystem.Admin.Reusable;
+using Service.Utilities;
 using System.Collections.Generic;
 
 namespace BlogSystem.Admin.Models
@@ -6,6 +7,7 @@ namespace BlogSystem.Admin.Models
     public class PostsViewModel
     {
         public PostsGridViewModel GridViewModel { get; set; }
+        public string PostsAddUrl { get; set; }
 
         public class PostsGridViewModel : GridViewModelBase
         {
@@ -30,5 +32,22 @@ namespace BlogSystem.Admin.Models
 
             }
         }
+    }
+
+    public class PostsAddFormModel
+    {
+        public string Title { get; set; }
+        public string Slug { get; set; }
+        public string Description { get; set; }
+        public string CoverPhoto { get; set; }
+        public int? CategoryID { get; set; }
+        public int? LanguageID { get; set; }
+        public int? StatusID { get; set; }
+        public string PostsUrl { get; set; }
+
+        public List<SimpleKeyValueDropDownItem<int?, string>> Categories { get; set; }
+        public List<SimpleKeyValueDropDownItem<int?, string>> Statuses { get; set; }
+        public List<SimpleKeyValueDropDownItem<int?, string>> Languages { get; set; }
+
     }
 }

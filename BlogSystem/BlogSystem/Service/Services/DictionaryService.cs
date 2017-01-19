@@ -1,5 +1,6 @@
 ﻿using Core.Entities;
 using Service.IServices;
+using Service.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,6 +20,36 @@ namespace Service.Services
             var dictionary = UnitOfWork.DictionaryRepository.GetByID(ID);
 
             return dictionary;
+        }
+
+        public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostStatusItems(int? selectedID = null)
+        {
+            var postStatus =
+                UnitOfWork.DictionaryRepository.GetAllByCodeAndLevel(DictionaryCode.POSTSTATUS, 1)
+                    .Select(p => new SimpleKeyValueDropDownItem<int?, string>
+                    {
+                        Key = p.ID,
+                        Value = p.Caption,
+                        IsSelected = p.ID == selectedID
+                    })
+                    .ToList();
+
+            return postStatus;
+        }
+
+        public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostLanguageItems(int? selectedID = null)
+        {
+            var postLanguages =
+                UnitOfWork.DictionaryRepository.GetAllByCodeAndLevel(DictionaryCode.POSTLANGUAGE, 1)
+                    .Select(p => new SimpleKeyValueDropDownItem<int?, string>
+                    {
+                        Key = p.ID,
+                        Value = p.Caption,
+                        IsSelected = p.ID == selectedID
+                    })
+                    .ToList();
+
+            return postLanguages;
         }
 
         public int? Add(Dictionary dictionary)

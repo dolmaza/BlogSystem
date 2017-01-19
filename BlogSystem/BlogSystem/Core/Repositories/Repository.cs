@@ -10,6 +10,9 @@ namespace Core.Repositories
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
+        public bool IsError { get; private set; }
+        private bool _disposed = false;
+
 
         public Repository(DbContext context)
         {
@@ -57,6 +60,7 @@ namespace Core.Repositories
         }
 
         #region Read Only Operations
+
 
         public IEnumerable<TEntity> GetAll
         (
@@ -177,5 +181,37 @@ namespace Core.Repositories
 
         #endregion
 
+
+        public int Complate()
+        {
+            try
+            {
+                return Context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                IsError = true;
+                return -1;
+            }
+
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this._disposed)
+            {
+                if (disposing)
+                {
+                    Context.Dispose();
+                }
+            }
+            this._disposed = true;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 }

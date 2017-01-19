@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.IRepositries;
 using Service.IServices;
 using Service.Utilities;
 using System.Collections.Generic;
@@ -8,16 +9,25 @@ namespace Service.Services
 {
     public class RoleService : BaseService, IRoleService
     {
+        private readonly IRepository<Role> _roleRepository;
+        private readonly IRepository<Permission> _permissionRepository;
+
+        public RoleService()
+        {
+            _roleRepository = GetRepository<Role>();
+            _permissionRepository = GetRepository<Permission>();
+        }
+
         public List<Role> GetAllGridItems()
         {
-            var roles = UnitOfWork.RoleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime)).ToList();
+            var roles = _roleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime)).ToList();
 
             return roles;
         }
 
         public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownItems(int? selectedID = null)
         {
-            var roles = UnitOfWork.RoleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime))
+            var roles = _roleRepository.GetAll(orderBy: ob => ob.OrderByDescending(r => r.CreateTime))
                 .Select(r => new SimpleKeyValueDropDownItem<int?, string>
                 {
                     Key = r.ID,
@@ -30,7 +40,7 @@ namespace Service.Services
 
         public List<int?> GetRolePermissions(int? ID)
         {
-            var rolePermissions = UnitOfWork.RoleRepository.Get(filter: r => r.ID == ID, includes: r => r.Permissions)
+            var rolePermissions = _roleRepository.Get(filter: r => r.ID == ID, includes: r => r.Permissions)
                 .FirstOrDefault()?.Permissions
                 .Select(r => r.ID)
                 .ToList();
@@ -40,47 +50,47 @@ namespace Service.Services
 
         public Role GetByID(int? ID)
         {
-            var role = UnitOfWork.RoleRepository.GetByID(ID);
+            var role = _roleRepository.GetByID(ID);
 
             return role;
         }
 
         public int? Add(Role role)
         {
-            UnitOfWork.RoleRepository.Add(role);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _roleRepository.Add(role);
+            _roleRepository.Complate();
+            IsError = _roleRepository.IsError;
 
             return role.ID;
         }
 
         public List<int?> AddRange(List<Role> roles)
         {
-            UnitOfWork.RoleRepository.AddRange(roles);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _roleRepository.AddRange(roles);
+            _roleRepository.Complate();
+            IsError = _roleRepository.IsError;
 
             return roles.Select(u => u.ID).ToList();
         }
 
         public void Update(Role role)
         {
-            UnitOfWork.RoleRepository.Update(role);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _roleRepository.Update(role);
+            _roleRepository.Complate();
+            IsError = _roleRepository.IsError;
 
         }
 
         public void UpdateRolePermissions(int? roleID, IEnumerable<int?> permissionIDs)
         {
-            var role = UnitOfWork.RoleRepository.GetOne(filter: r => r.ID == roleID, includes: r => r.Permissions);
+            var role = _roleRepository.GetOne(filter: r => r.ID == roleID, includes: r => r.Permissions);
             if (role == null || permissionIDs == null)
             {
                 IsError = true;
             }
             else
             {
-                var newPermissions = UnitOfWork.PermissionRepository.Get(filter: p => permissionIDs.Contains(p.ID ?? 0)).ToList();
+                var newPermissions = _permissionRepository.Get(filter: p => permissionIDs.Contains(p.ID ?? 0)).ToList();
 
                 role.Permissions.Where(p => !newPermissions.Contains(p)).ToList().ForEach(permission =>
                 {
@@ -91,26 +101,26 @@ namespace Service.Services
                 {
                     role.Permissions.Add(permission);
                 });
-                UnitOfWork.RoleRepository.Update(role);
-                UnitOfWork.Complate();
-                IsError = UnitOfWork.IsError;
+                _roleRepository.Update(role);
+                _roleRepository.Complate();
+                IsError = _roleRepository.IsError;
 
             }
         }
 
         public void Remove(Role role)
         {
-            UnitOfWork.RoleRepository.Remove(role);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _roleRepository.Remove(role);
+            _roleRepository.Complate();
+            IsError = _roleRepository.IsError;
 
         }
 
         public void RemoveRange(List<Role> roles)
         {
-            UnitOfWork.RoleRepository.RemoveRange(roles);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _roleRepository.RemoveRange(roles);
+            _roleRepository.Complate();
+            IsError = _roleRepository.IsError;
 
         }
     }

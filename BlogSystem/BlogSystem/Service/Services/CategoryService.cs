@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.IRepositries;
 using Service.IServices;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,58 +8,65 @@ namespace Service.Services
 {
     public class CategoryService : BaseService, ICategoryService
     {
+        private readonly IRepository<Category> _categoryRepository;
+
+        public CategoryService()
+        {
+            _categoryRepository = GetRepository<Category>();
+        }
+
         public List<Category> GetAllTreeItems()
         {
-            var categories = UnitOfWork.CategoryRepository.GetAll(orderBy: ob => ob.OrderBy(c => c.SortIndex)).ToList();
+            var categories = _categoryRepository.GetAll(orderBy: ob => ob.OrderBy(c => c.SortIndex)).ToList();
 
             return categories;
         }
 
         public Category GetByID(int? ID)
         {
-            var category = UnitOfWork.CategoryRepository.GetByID(ID);
+            var category = _categoryRepository.GetByID(ID);
 
             return category;
         }
 
         public int? Add(Category category)
         {
-            UnitOfWork.CategoryRepository.Add(category);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _categoryRepository.Add(category);
+            _categoryRepository.Complate();
+            IsError = _categoryRepository.IsError;
 
             return category.ID;
         }
 
         public List<int?> AddRange(List<Category> categories)
         {
-            UnitOfWork.CategoryRepository.AddRange(categories);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _categoryRepository.AddRange(categories);
+            _categoryRepository.Complate();
+            IsError = _categoryRepository.IsError;
 
             return categories.Select(c => c.ID).ToList();
         }
 
         public void Update(Category category)
         {
-            UnitOfWork.CategoryRepository.Update(category);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _categoryRepository.Update(category);
+            _categoryRepository.Complate();
+            IsError = _categoryRepository.IsError;
 
         }
 
         public void Remove(Category category)
         {
-            UnitOfWork.CategoryRepository.Remove(category);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _categoryRepository.Remove(category);
+            _categoryRepository.Complate();
+            IsError = _categoryRepository.IsError;
         }
 
         public void RemoveRange(List<Category> categories)
         {
-            UnitOfWork.CategoryRepository.RemoveRange(categories);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _categoryRepository.RemoveRange(categories);
+            _categoryRepository.Complate();
+            IsError = _categoryRepository.IsError;
         }
     }
 }

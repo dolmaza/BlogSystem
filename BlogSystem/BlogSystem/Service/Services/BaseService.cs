@@ -1,16 +1,17 @@
 ﻿using Core.DB;
+using Core.Repositories;
 using Service.IServices;
 
 namespace Service.Services
 {
     public class BaseService : IBaseService
     {
-        public IUnitOfWork.IUnitOfWork UnitOfWork { get; private set; }
         public bool IsError { get; set; }
 
-        public BaseService()
+        public Repository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
-            UnitOfWork = new UnitOfWork.UnitOfWork(new DbCoreDataContext());
+            return new Repository<TEntity>(new DbCoreDataContext());
         }
+
     }
 }

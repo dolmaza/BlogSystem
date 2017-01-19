@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.IRepositries;
 using Service.IServices;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,16 @@ namespace Service.Services
 {
     public class PostService : BaseService, IPostService
     {
+        private readonly IRepository<Post> _postRepository;
+
+        public PostService()
+        {
+            _postRepository = GetRepository<Post>();
+        }
+
         public List<Post> GetAllGridItems()
         {
-            var posts = UnitOfWork.PostRepository.Get
+            var posts = _postRepository.Get
                 (
                     null,
                     ob => ob.OrderByDescending(p => p.CreateTime),
@@ -25,50 +33,50 @@ namespace Service.Services
 
         public Post GetByID(int? ID)
         {
-            var post = UnitOfWork.PostRepository.GetByID(ID);
+            var post = _postRepository.GetByID(ID);
 
             return post;
         }
 
         public int? Add(Post post)
         {
-            UnitOfWork.PostRepository.Add(post);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _postRepository.Add(post);
+            _postRepository.Complate();
+            IsError = _postRepository.IsError;
 
             return post.ID;
         }
 
         public List<int?> AddRange(List<Post> posts)
         {
-            UnitOfWork.PostRepository.AddRange(posts);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _postRepository.AddRange(posts);
+            _postRepository.Complate();
+            IsError = _postRepository.IsError;
 
             return posts.Select(p => p.ID).ToList();
         }
 
         public void Update(Post post)
         {
-            UnitOfWork.PostRepository.Update(post);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _postRepository.Update(post);
+            _postRepository.Complate();
+            IsError = _postRepository.IsError;
 
         }
 
         public void Remove(Post post)
         {
-            UnitOfWork.PostRepository.Remove(post);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _postRepository.Remove(post);
+            _postRepository.Complate();
+            IsError = _postRepository.IsError;
 
         }
 
         public void RemoveRange(List<Post> posts)
         {
-            UnitOfWork.PostRepository.RemoveRange(posts);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _postRepository.RemoveRange(posts);
+            _postRepository.Complate();
+            IsError = _postRepository.IsError;
 
         }
     }

@@ -5,9 +5,9 @@ using System.Linq.Expressions;
 
 namespace Core.IRepositries
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> : IDisposable where TEntity : class
     {
-
+        bool IsError { get; }
         IEnumerable<TEntity> GetAll
         (
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
@@ -53,5 +53,7 @@ namespace Core.IRepositries
 
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+
+        int Complate();
     }
 }

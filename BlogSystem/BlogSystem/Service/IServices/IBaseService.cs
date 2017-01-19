@@ -1,8 +1,10 @@
-﻿namespace Service.IServices
+﻿using Core.Repositories;
+
+namespace Service.IServices
 {
     public interface IBaseService
     {
-        IUnitOfWork.IUnitOfWork UnitOfWork { get; }
+        Repository<TEntity> GetRepository<TEntity>() where TEntity : class;
         bool IsError { get; set; }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.IRepositries;
 using Service.IServices;
 using Service.Utilities;
 using System.Collections.Generic;
@@ -8,16 +9,23 @@ namespace Service.Services
 {
     public class DictionaryService : BaseService, IDictionaryService
     {
+        private readonly IRepository<Dictionary> _dictionaryRepository;
+
+        public DictionaryService()
+        {
+            _dictionaryRepository = GetRepository<Dictionary>();
+        }
+
         public List<Dictionary> GetAllTreeItems()
         {
-            var dictionaries = UnitOfWork.DictionaryRepository.GetAll(orderBy: ob => ob.OrderBy(d => d.SortIndex)).ToList();
+            var dictionaries = _dictionaryRepository.GetAll(orderBy: ob => ob.OrderBy(d => d.SortIndex)).ToList();
 
             return dictionaries;
         }
 
         public Dictionary GetByID(int? ID)
         {
-            var dictionary = UnitOfWork.DictionaryRepository.GetByID(ID);
+            var dictionary = _dictionaryRepository.GetByID(ID);
 
             return dictionary;
         }
@@ -25,7 +33,7 @@ namespace Service.Services
         public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostStatusItems(int? selectedID = null)
         {
             var postStatus =
-                UnitOfWork.DictionaryRepository.GetAllByCodeAndLevel(DictionaryCode.POSTSTATUS, 1)
+                _dictionaryRepository.Get(d => d.Code == DictionaryCode.POSTSTATUS && d.Level == 1, od => od.OrderBy(d => d.SortIndex))
                     .Select(p => new SimpleKeyValueDropDownItem<int?, string>
                     {
                         Key = p.ID,
@@ -40,7 +48,7 @@ namespace Service.Services
         public List<SimpleKeyValueDropDownItem<int?, string>> GetAllDropDownPostLanguageItems(int? selectedID = null)
         {
             var postLanguages =
-                UnitOfWork.DictionaryRepository.GetAllByCodeAndLevel(DictionaryCode.POSTLANGUAGE, 1)
+                _dictionaryRepository.Get(d => d.Code == DictionaryCode.POSTLANGUAGE && d.Level == 1, od => od.OrderBy(d => d.SortIndex))
                     .Select(p => new SimpleKeyValueDropDownItem<int?, string>
                     {
                         Key = p.ID,
@@ -54,43 +62,43 @@ namespace Service.Services
 
         public int? Add(Dictionary dictionary)
         {
-            UnitOfWork.DictionaryRepository.Add(dictionary);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _dictionaryRepository.Add(dictionary);
+            _dictionaryRepository.Complate();
+            IsError = _dictionaryRepository.IsError;
 
             return dictionary.ID;
         }
 
         public List<int?> AddRange(List<Dictionary> dictionaries)
         {
-            UnitOfWork.DictionaryRepository.AddRange(dictionaries);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _dictionaryRepository.AddRange(dictionaries);
+            _dictionaryRepository.Complate();
+            IsError = _dictionaryRepository.IsError;
 
             return dictionaries.Select(u => u.ID).ToList();
         }
 
         public void Update(Dictionary dictionary)
         {
-            UnitOfWork.DictionaryRepository.Update(dictionary);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _dictionaryRepository.Update(dictionary);
+            _dictionaryRepository.Complate();
+            IsError = _dictionaryRepository.IsError;
 
         }
 
         public void Remove(Dictionary dictionary)
         {
-            UnitOfWork.DictionaryRepository.Remove(dictionary);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _dictionaryRepository.Remove(dictionary);
+            _dictionaryRepository.Complate();
+            IsError = _dictionaryRepository.IsError;
 
         }
 
         public void RemoveRange(List<Dictionary> dictionaries)
         {
-            UnitOfWork.DictionaryRepository.RemoveRange(dictionaries);
-            UnitOfWork.Complate();
-            IsError = UnitOfWork.IsError;
+            _dictionaryRepository.RemoveRange(dictionaries);
+            _dictionaryRepository.Complate();
+            IsError = _dictionaryRepository.IsError;
 
         }
     }

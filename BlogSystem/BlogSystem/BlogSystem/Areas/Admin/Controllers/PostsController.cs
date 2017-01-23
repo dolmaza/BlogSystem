@@ -13,11 +13,13 @@ namespace BlogSystem.Areas.Admin.Controllers
     {
         private static IPostService _postService;
         private static IDictionaryService _dictionaryService;
+        private static ICategoryService _categoryService;
 
         public PostsController()
         {
             _postService = new PostService();
             _dictionaryService = new DictionaryService();
+            _categoryService = new CategoryService();
         }
 
         #region Grid
@@ -71,7 +73,8 @@ namespace BlogSystem.Areas.Admin.Controllers
             {
                 PostsUrl = Url.RouteUrl("Posts"),
                 Statuses = _dictionaryService.GetAllDropDownPostStatusItems(),
-                Languages = _dictionaryService.GetAllDropDownPostLanguageItems()
+                Languages = _dictionaryService.GetAllDropDownPostLanguageItems(),
+                Categories = _categoryService.GetAllTwoLevelDropDownItems()
             };
             return View(model);
         }

@@ -184,6 +184,8 @@
     <Content Include="Content\plugins\jQuery\jQuery-2.1.4.min.js" />
     <Content Include="Content\plugins\jQuery\jquery.numeric-input.js" />
     <Content Include="Content\plugins\jQuery\masked-input.js" />
+    <Content Include="Content\plugins\popover\popover.css" />
+    <Content Include="Content\plugins\popover\popover.js" />
     <Content Include="Content\plugins\slimScroll\jquery.slimscroll.min.js" />
     <Content Include="Areas\Admin\Content\scripts\Dictionary\Index.js" />
     <Content Include="Areas\Admin\Content\scripts\Permission\Index.js" />

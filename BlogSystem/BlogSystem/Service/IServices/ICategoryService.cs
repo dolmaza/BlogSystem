@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Service.Utilities;
 using System.Collections.Generic;
 
 namespace Service.IServices
@@ -6,6 +7,7 @@ namespace Service.IServices
     public interface ICategoryService : IBaseService
     {
         List<Category> GetAllTreeItems();
+        List<TwoLevelDropDownItem> GetAllTwoLevelDropDownItems(int? isSelected = null);
         Category GetByID(int? ID);
 
         int? Add(Category category);

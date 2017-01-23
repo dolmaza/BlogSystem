@@ -45,9 +45,9 @@ namespace BlogSystem.Admin.Models
         public int? StatusID { get; set; }
         public string PostsUrl { get; set; }
 
-        public List<SimpleKeyValueDropDownItem<int?, string>> Categories { get; set; }
         public List<SimpleKeyValueDropDownItem<int?, string>> Statuses { get; set; }
         public List<SimpleKeyValueDropDownItem<int?, string>> Languages { get; set; }
+        public List<TwoLevelDropDownItem> Categories { get; set; }
 
     }
 }

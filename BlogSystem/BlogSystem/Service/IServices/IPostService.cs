@@ -8,6 +8,8 @@ namespace Service.IServices
         List<Post> GetAllGridItems();
         Post GetByID(int? ID);
 
+        bool IsSlugUnique(string slug, int? postID = null);
+
         int? Add(Post post);
         List<int?> AddRange(List<Post> posts);
 

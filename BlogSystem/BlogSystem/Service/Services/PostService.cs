@@ -38,6 +38,11 @@ namespace Service.Services
             return post;
         }
 
+        public bool IsSlugUnique(string slug, int? postID = null)
+        {
+            return !_postRepository.Exists(p => p.Slug == slug && (postID == null || p.ID == postID));
+        }
+
         public int? Add(Post post)
         {
             _postRepository.Add(post);

@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.IRepositries;
 using Service.IServices;
+using Service.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,6 +19,27 @@ namespace Service.Services
         public List<Category> GetAllTreeItems()
         {
             var categories = _categoryRepository.GetAll(orderBy: ob => ob.OrderBy(c => c.SortIndex)).ToList();
+
+            return categories;
+        }
+
+        public List<TwoLevelDropDownItem> GetAllTwoLevelDropDownItems(int? isSelected = null)
+        {
+            var categories = _categoryRepository.Get
+                (
+                    filter: c => c.ParentID == null,
+                    orderBy: ob => ob.OrderBy(c => c.SortIndex),
+                    includes: c => c.Childrens
+                ).Select(c => new TwoLevelDropDownItem
+                {
+                    Caption = c.Caption,
+                    SecondLevelItems = c.Childrens.Select(cc => new SimpleKeyValueDropDownItem<int?, string>
+                    {
+                        Key = cc.ID,
+                        Value = cc.Caption,
+                        IsSelected = cc.ID == isSelected
+                    }).ToList()
+                }).ToList();
 
             return categories;
         }

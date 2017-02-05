@@ -1,12 +1,13 @@
 ﻿using BlogSystem.Admin.Models;
 using BlogSystem.Admin.Reusable;
+using BlogSystem.Admin.Reusable.Helpers;
+using BlogSystem.Reusable;
 using Core.Entities;
 using DevExpress.Web.Mvc;
 using Service.IServices;
 using Service.Properties;
 using Service.Services;
 using System;
-using System.Linq;
 using System.Web.Mvc;
 
 namespace BlogSystem.Areas.Admin.Controllers
@@ -20,23 +21,19 @@ namespace BlogSystem.Areas.Admin.Controllers
             _dictionaryService = new DictionaryService();
         }
 
-        [Route("dictionaries", Name = "Dictionaries")]
-        public ActionResult Index()
+        [Route("dictionaries", Name = ControllerActionRouteNames.Admin.Dictionaries.DICTIONARIES)]
+        public ActionResult Dictionaries()
         {
-            var model = new DictionariesViewModel
-            {
-                TreeViewModel = GetTreeViewModel()
-            };
-            return View(model);
+            return View(ViewNames.Admin.Dictionaries.DICTIONARIES, DictionaryHelpers.GetDictionariesViewModel(Url, _dictionaryService));
         }
 
-        [Route("dictionaries/tree", Name = "DictioanriesTree")]
+        [Route("dictionaries/tree", Name = ControllerActionRouteNames.Admin.Dictionaries.TREE)]
         public ActionResult DictionaryTree()
         {
-            return PartialView("_DictionariesTree", GetTreeViewModel());
+            return PartialView(ViewNames.Admin.Dictionaries.DICTIONARIES_TREE, DictionaryHelpers.GetDictionariesTreeViewModel(Url, _dictionaryService));
         }
 
-        [Route("dictionaries/add", Name = "DictionariesAdd")]
+        [Route("dictionaries/add", Name = ControllerActionRouteNames.Admin.Dictionaries.TREE_ADD)]
         public ActionResult DictioanriesAdd([ModelBinder(typeof(DevExpressEditorsBinder))] DictionariesViewModel.DictionariesTreeViewModel.DictionaryTreeItem model)
         {
             _dictionaryService.Add(new Dictionary
@@ -44,7 +41,7 @@ namespace BlogSystem.Areas.Admin.Controllers
                 ID = model.ID,
                 ParentID = model.ParentID,
                 Caption = model.Caption,
-                CaptionKa = model.CaptionEng,
+                CaptionKa = model.CaptionKa,
                 CaptionRus = model.CaptionRus,
                 StringCode = model.StringCode,
                 IntCode = model.IntCode,
@@ -58,10 +55,10 @@ namespace BlogSystem.Areas.Admin.Controllers
                 throw new Exception(Resources.Abort);
             }
 
-            return PartialView("_DictionariesTree", GetTreeViewModel());
+            return PartialView(ViewNames.Admin.Dictionaries.DICTIONARIES_TREE, DictionaryHelpers.GetDictionariesTreeViewModel(Url, _dictionaryService));
         }
 
-        [Route("dictionaries/update", Name = "DictionariesUpdate")]
+        [Route("dictionaries/update", Name = ControllerActionRouteNames.Admin.Dictionaries.TREE_UPDATE)]
         public ActionResult DictioanriesUpdate([ModelBinder(typeof(DevExpressEditorsBinder))] DictionariesViewModel.DictionariesTreeViewModel.DictionaryTreeItem model)
         {
             var dictionary = _dictionaryService.GetByID(model.ID);
@@ -74,7 +71,7 @@ namespace BlogSystem.Areas.Admin.Controllers
             {
                 dictionary.ParentID = model.ParentID;
                 dictionary.Caption = model.Caption;
-                dictionary.CaptionKa = model.CaptionEng;
+                dictionary.CaptionKa = model.CaptionKa;
                 dictionary.CaptionRus = model.CaptionRus;
                 dictionary.StringCode = model.StringCode;
                 dictionary.IntCode = model.IntCode;
@@ -90,11 +87,11 @@ namespace BlogSystem.Areas.Admin.Controllers
                 }
             }
 
-            return PartialView("_DictionariesTree", GetTreeViewModel());
+            return PartialView(ViewNames.Admin.Dictionaries.DICTIONARIES_TREE, DictionaryHelpers.GetDictionariesTreeViewModel(Url, _dictionaryService));
         }
 
-        [Route("dictionaries/delete", Name = "DictionariesDelete")]
-        public ActionResult DictionarisDelete(int? ID)
+        [Route("dictionaries/delete", Name = ControllerActionRouteNames.Admin.Dictionaries.TREE_DELETE)]
+        public ActionResult DictionarisDelete([ModelBinder(typeof(DevExpressEditorsBinder))] int? ID)
         {
             var dictionary = _dictionaryService.GetByID(ID);
 
@@ -113,31 +110,8 @@ namespace BlogSystem.Areas.Admin.Controllers
 
             }
 
-            return PartialView("_DictionariesTree", GetTreeViewModel());
+            return PartialView(ViewNames.Admin.Dictionaries.DICTIONARIES_TREE, DictionaryHelpers.GetDictionariesTreeViewModel(Url, _dictionaryService));
         }
 
-        private DictionariesViewModel.DictionariesTreeViewModel GetTreeViewModel()
-        {
-            return new DictionariesViewModel.DictionariesTreeViewModel
-            {
-                ListUrl = Url.RouteUrl("DictioanriesTree"),
-                AddNewUrl = Url.RouteUrl("DictionariesAdd"),
-                UpdateUrl = Url.RouteUrl("DictionariesUpdate"),
-                DeleteUrl = Url.RouteUrl("DictionariesDelete"),
-                TreeItems = _dictionaryService.GetAllTreeItems().Select(d => new DictionariesViewModel.DictionariesTreeViewModel.DictionaryTreeItem
-                {
-                    ID = d.ID,
-                    ParentID = d.ParentID,
-                    Caption = d.Caption,
-                    CaptionEng = d.CaptionKa,
-                    CaptionRus = d.CaptionRus,
-                    StringCode = d.StringCode,
-                    IntCode = d.IntCode,
-                    DecimalValue = d.DecimalValue,
-                    Code = d.Code,
-                    SortIndex = d.SortIndex
-                }).ToList()
-            };
-        }
     }
 }

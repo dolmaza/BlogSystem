@@ -87,6 +87,7 @@
     <Compile Include="Utilities\SimpleKeyValueDropDownItem.cs" />
     <Compile Include="Utilities\SuccessErrorMessageInfo.cs" />
     <Compile Include="Utilities\Utilities.cs" />
+    <Compile Include="Validation\ValidationBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -98,9 +99,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

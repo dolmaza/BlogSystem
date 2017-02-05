@@ -1,0 +1,6 @@
+﻿@model RolePermissionsViewModel.RolePermissionsRolesGridViewModel
+@Html.DevExpress().GridView(settings =>
+{
+    settings = Model.GetGridViewSettings(settings, Html);
+
+}).Bind(Model.GridItems).GetHtml()

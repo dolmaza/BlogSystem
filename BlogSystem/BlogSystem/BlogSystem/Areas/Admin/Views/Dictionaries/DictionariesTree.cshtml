@@ -1,0 +1,6 @@
+﻿@model DictionariesViewModel.DictionariesTreeViewModel
+@Html.DevExpress().TreeList(settings =>
+{
+    settings = Model.GeTreeListSettings(settings, Html);
+
+}).Bind(Model.TreeItems).GetHtml()

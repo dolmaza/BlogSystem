@@ -1,0 +1,6 @@
+﻿@model CategoriesViewModel.TreeViewModel
+@Html.DevExpress().TreeList(settings =>
+{
+    settings = Model.GetTreeListSettings(settings, Html);
+
+}).Bind(Model.TreeItems).GetHtml()

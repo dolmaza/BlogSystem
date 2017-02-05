@@ -1,11 +1,12 @@
-﻿using Service.IServices;
+﻿using BlogSystem.Admin.Models;
+using BlogSystem.Admin.Reusable;
+using BlogSystem.Reusable;
+using BlogSystem.Reusable.Extentions;
+using Service.IServices;
 using Service.Properties;
 using Service.Services;
 using Service.Utilities;
 using System.Web.Mvc;
-using BlogSystem.Admin.Models;
-using BlogSystem.Admin.Reusable;
-using BlogSystem.Reusable.Extentions;
 
 namespace BlogSystem.Areas.Admin.Controllers
 {
@@ -18,7 +19,7 @@ namespace BlogSystem.Areas.Admin.Controllers
             _userService = new UserService();
         }
 
-        [Route("", Name = "Dashboard")]
+        [Route("", Name = ControllerActionRouteNames.Admin.Home.DASHBOARD)]
         public ActionResult Index()
         {
             return View();

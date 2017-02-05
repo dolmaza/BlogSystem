@@ -61,9 +61,9 @@ namespace Service.Validation
             return null;
         }
 
-        public static CustomError ValidateCoverPhoto(string coverPhotoName)
+        public static CustomError ValidateCoverPhotoBase64(string coverPhotoNameBase64)
         {
-            if (string.IsNullOrWhiteSpace(coverPhotoName))
+            if (string.IsNullOrWhiteSpace(coverPhotoNameBase64))
             {
                 return CustomErrors.CoverPhotoRequired;
             }
@@ -96,13 +96,13 @@ namespace Service.Validation
 
     public class Validation : ValidationBase
     {
-        public static List<CustomError> ValidatePostCreateForm(string title, string slug, string coverPhoto, int? categoryID, string description, int? postID = null)
+        public static List<CustomError> ValidatePostCreateForm(string title, string slug, string coverPhotoBase64, int? categoryID, string description, int? postID = null)
         {
             var errors = new List<CustomError>
             {
                 ValidateTitle(title),
                 ValidationSlug(slug,postID),
-                ValidateCoverPhoto(coverPhoto),
+                ValidateCoverPhotoBase64(coverPhotoBase64),
                 ValidateCategory(categoryID),
                 ValidateDescription(description)
             };

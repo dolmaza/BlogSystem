@@ -53,7 +53,7 @@
                 dataType: 'json',
                 success: function (response) {
                     AjaxLoader.HideLoader();
-
+                    console.log(response);
                     if (response.IsSuccess) {
                         
                     } else {

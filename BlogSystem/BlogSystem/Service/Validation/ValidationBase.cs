@@ -17,23 +17,17 @@ namespace Service.Validation
     public class CustomErrors
     {
         public static CustomError Abort { get; set; } = new CustomError { Code = 0, ErrorMessage = Resources.Abort };
-        public static CustomError TitleRequired { get; set; } = new CustomError { Code = 1, ErrorMessage = "" };
-        public static CustomError SlugRequired { get; set; } = new CustomError { Code = 1, SubCode = 1, ErrorMessage = "" };
-        public static CustomError SlugMustBeUnique { get; set; } = new CustomError { Code = 1, SubCode = 2, ErrorMessage = "" };
-        public static CustomError CoverPhotoRequired { get; set; } = new CustomError { Code = 2, ErrorMessage = "" };
-        public static CustomError CategoryRequired { get; set; } = new CustomError { Code = 3, SubCode = 1, ErrorMessage = "" };
-        public static CustomError DescriptionRequired { get; set; } = new CustomError { Code = 4, SubCode = 1, ErrorMessage = "" };
+        public static CustomError TitleRequired { get; set; } = new CustomError { Code = 1, ErrorMessage = Resources.ValidationFieldIsRequired };
+        public static CustomError SlugRequired { get; set; } = new CustomError { Code = 1, SubCode = 1, ErrorMessage = Resources.ValidationFieldIsRequired };
+        public static CustomError SlugMustBeUnique { get; set; } = new CustomError { Code = 1, SubCode = 2, ErrorMessage = Resources.ValidationSlugUnique };
+        public static CustomError CoverPhotoRequired { get; set; } = new CustomError { Code = 2, ErrorMessage = Resources.ValidationFieldIsRequired };
+        public static CustomError CategoryRequired { get; set; } = new CustomError { Code = 3, ErrorMessage = Resources.ValidationFieldIsRequired };
+        public static CustomError DescriptionRequired { get; set; } = new CustomError { Code = 4, ErrorMessage = Resources.ValidationFieldIsRequired };
 
     }
 
     public class ValidationBase
     {
-        private static IPostService _postService;
-
-        public ValidationBase()
-        {
-            _postService = new PostService();
-        }
 
         #region Methods
 
@@ -49,11 +43,13 @@ namespace Service.Validation
 
         public static CustomError ValidationSlug(string slug, int? postID = null)
         {
+            IPostService postService = new PostService();
+
             if (string.IsNullOrWhiteSpace(slug))
             {
                 return CustomErrors.SlugRequired;
             }
-            else if (_postService.IsSlugUnique(slug, postID))
+            else if (postService.IsSlugUnique(slug, postID))
             {
                 return CustomErrors.SlugMustBeUnique;
             }

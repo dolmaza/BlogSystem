@@ -124,11 +124,29 @@ namespace Service.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filed is required.
+        /// </summary>
+        public static string ValidationFieldIsRequired {
+            get {
+                return ResourceManager.GetString("ValidationFieldIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email or Password is not correct.
         /// </summary>
         public static string ValidationInvalidEmailOrPassword {
             get {
                 return ResourceManager.GetString("ValidationInvalidEmailOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slug must be unique.
+        /// </summary>
+        public static string ValidationSlugUnique {
+            get {
+                return ResourceManager.GetString("ValidationSlugUnique", resourceCulture);
             }
         }
     }

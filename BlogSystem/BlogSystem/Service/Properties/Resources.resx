@@ -138,7 +138,13 @@
   <data name="ValidationEmailUnique" xml:space="preserve">
     <value>Email must be unique</value>
   </data>
+  <data name="ValidationFieldIsRequired" xml:space="preserve">
+    <value>Filed is required</value>
+  </data>
   <data name="ValidationInvalidEmailOrPassword" xml:space="preserve">
     <value>Email or Password is not correct</value>
+  </data>
+  <data name="ValidationSlugUnique" xml:space="preserve">
+    <value>Slug must be unique</value>
   </data>
 </root>

@@ -2,6 +2,7 @@
 using BlogSystem.Admin.Reusable;
 using BlogSystem.Admin.Reusable.Helpers;
 using BlogSystem.Reusable;
+using BlogSystem.Reusable.Extentions;
 using Core.Entities;
 using Service.IServices;
 using Service.Properties;
@@ -61,6 +62,7 @@ namespace BlogSystem.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         [Route("posts/add")]
         public ActionResult PostsAdd(PostsAddFormModel model)
         {
@@ -100,7 +102,7 @@ namespace BlogSystem.Areas.Admin.Controllers
             {
                 ajaxResponse.Data = new
                 {
-                    Message = Resources.Abort
+                    ErrorsJson = errors.ToJson()
                 };
             }
 
